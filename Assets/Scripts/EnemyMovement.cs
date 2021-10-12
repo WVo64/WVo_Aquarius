@@ -38,7 +38,7 @@ public class EnemyMovement : MonoBehaviour
                 break;
         }
 
-        if (transform.position.x > 30f || transform.position.x < -30f || transform.position.y > 20f || transform.position.y < -15f)
+        if (transform.position.x > 90f || transform.position.x < -90f || transform.position.y > 40f || transform.position.y < -15f)
         {
             Destroy(gameObject);
         }
