@@ -6,12 +6,17 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody rbPlayer;
     private Vector3 direction = Vector3.zero;
-    public float speed = 10.0f;
+    private float speed = 25.0f;
+    private Quaternion aimLook;
 
     // Start is called before the first frame update
     void Start()
     {
         rbPlayer = GetComponent<Rigidbody>();
+        rbPlayer.drag = 3;
+
+
+
     }
 
     // Update is called once per frame
@@ -26,21 +31,30 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rbPlayer.AddForce(direction * speed, ForceMode.Force);
-        if(transform.position.x > 4.9)
+
+        CheckBoundaries();
+        
+    }
+
+    private void CheckBoundaries()
+    {
+        //Player Z position = Camera Position + 10.
+        if (transform.position.x > 10f)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, -5);
+            transform.position = new Vector3(10f, transform.position.y, transform.position.z);
         }
-        else if(transform.position.x < -4.9)
+        else if (transform.position.x < -10f)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, -5);
+            transform.position = new Vector3(-10f, transform.position.y, transform.position.z);
         }
-        else if(transform.position.y > 3.2)
+        
+        if (transform.position.y > 6.0f)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, -5);
+            transform.position = new Vector3(transform.position.x, 6.0f, transform.position.z);
         }
-        else if(transform.position.y < -1.2)
+        else if (transform.position.y < -4.0f)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y, -5);
+            transform.position = new Vector3(transform.position.x, -4.0f, transform.position.z);
         }
     }
 }
