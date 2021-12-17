@@ -1,28 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public float minSpeed = 3.0f;
-    public float maxSpeed = 12.0f;
+    public List<GameObject> waypoints;
+    private NavMeshAgent agent;
 
-    private float speed;
+    private const float WP_THRESHOLD = 10.0f;
 
-    public enum DriftDirection //Taken from RiverHop
+    private GameObject currentWP;
+    private int currentWPIndex = 0;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        Left = -1,
-        Right = 1,
-        Up = 2,
-        Down = -2
+        agent = GetComponent<NavMeshAgent>();
+        currentWP = GetNextWayPoint();
+        agent.SetDestination(currentWP.transform.position);
     }
-    public DriftDirection driftDirection = DriftDirection.Left;
+
+    // GetNextWayPoint now picks a random Index between 0 and the waypoint count.
+    GameObject GetNextWayPoint()
+    {
+        currentWPIndex = Random.Range(0, waypoints.Count);
+        Debug.Log("Waypoint index: " + currentWPIndex);
+        return waypoints[currentWPIndex];
+    }
 
     // Update is called once per frame
     void Update()
     {
-        speed = Random.Range(minSpeed, maxSpeed);
-        switch (driftDirection)
+        if (Vector3.Distance(transform.position, currentWP.transform.position) < WP_THRESHOLD)
+        {
+            Debug.Log("Changing Waypoint");
+            currentWP = GetNextWayPoint();
+            agent.SetDestination(currentWP.transform.position);
+        }
+    }
+}
+
+
+/* Old Code
+ 
+switch (driftDirection)
         {
             case DriftDirection.Left:
                 transform.Translate(Vector3.left * Time.deltaTime * speed);
@@ -38,15 +60,17 @@ public class EnemyMovement : MonoBehaviour
                 break;
         }
 
+        // Boundary Check
         if (transform.position.x > 90f || transform.position.x < -90f || transform.position.y > 40f || transform.position.y < -15f)
         {
             Destroy(gameObject);
-        }
-    }
+        }*/
 
-    /* Start is called before the first frame update
-    void Start()
-    {
-
-    }*/
+/*public enum DriftDirection //Taken from RiverHop
+{
+    Left = -1,
+    Right = 1,
+    Up = 2,
+    Down = -2
 }
+public DriftDirection driftDirection = DriftDirection.Left;*/

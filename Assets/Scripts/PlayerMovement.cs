@@ -14,9 +14,6 @@ public class PlayerMovement : MonoBehaviour
     {
         rbPlayer = GetComponent<Rigidbody>();
         rbPlayer.drag = 3;
-
-
-
     }
 
     // Update is called once per frame
@@ -25,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
         float horMove = Input.GetAxis("Horizontal");
         float verMove = Input.GetAxis("Vertical");
 
-        direction = new Vector3(horMove, verMove, 0);
+        direction = new Vector3(-horMove, 0, verMove); //- horMove or else inverted controls w/ game perspective
     }
 
     void FixedUpdate()
@@ -38,23 +35,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckBoundaries()
     {
-        //Player Z position = Camera Position + 10.
-        if (transform.position.x > 10f)
+        //Player Y position = Camera Position + 10.
+        if (transform.position.x > 10.2f)
         {
-            transform.position = new Vector3(10f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(10.2f, transform.position.y, transform.position.z);
         }
-        else if (transform.position.x < -10f)
+        else if (transform.position.x < -10.2f)
         {
-            transform.position = new Vector3(-10f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(-10.2f, transform.position.y, transform.position.z);
         }
         
-        if (transform.position.y > 6.0f)
+        if (transform.position.z > 20.0f)
         {
-            transform.position = new Vector3(transform.position.x, 6.0f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y, 20.0f);
         }
-        else if (transform.position.y < -4.0f)
+        else if (transform.position.z < 9.5f)
         {
-            transform.position = new Vector3(transform.position.x, -4.0f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y, 9.5f);
         }
     }
 }
