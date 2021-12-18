@@ -8,12 +8,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 direction = Vector3.zero;
     private float speed = 25.0f;
     private Quaternion aimLook;
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         rbPlayer = GetComponent<Rigidbody>();
         rbPlayer.drag = 3;
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -23,6 +25,18 @@ public class PlayerMovement : MonoBehaviour
         float verMove = Input.GetAxis("Vertical");
 
         direction = new Vector3(-horMove, 0, verMove); //- horMove or else inverted controls w/ game perspective
+
+        if(Input.GetMouseButton(0))
+        {
+            Debug.Log("Pressed left click");
+            //GameObject SHOT MADE HERE
+            anim.SetBool("isShooting", true);
+            
+        }
+        else
+        {
+            anim.SetBool("isShooting", false);
+        }
     }
 
     void FixedUpdate()
@@ -52,6 +66,14 @@ public class PlayerMovement : MonoBehaviour
         else if (transform.position.z < 9.5f)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, 9.5f);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.CompareTag("Hazard"))
+        {
+            anim.SetBool("Dead", true);
         }
     }
 }

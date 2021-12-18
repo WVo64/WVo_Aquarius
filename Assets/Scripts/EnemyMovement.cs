@@ -25,7 +25,7 @@ public class EnemyMovement : MonoBehaviour
     GameObject GetNextWayPoint()
     {
         currentWPIndex = Random.Range(0, waypoints.Count);
-        Debug.Log("Waypoint index: " + currentWPIndex);
+        //Debug.Log("Waypoint index: " + currentWPIndex);
         return waypoints[currentWPIndex];
     }
 
@@ -34,7 +34,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, currentWP.transform.position) < WP_THRESHOLD)
         {
-            Debug.Log("Changing Waypoint");
+            //Debug.Log("Changing Waypoint");
             currentWP = GetNextWayPoint();
             agent.SetDestination(currentWP.transform.position);
         }
