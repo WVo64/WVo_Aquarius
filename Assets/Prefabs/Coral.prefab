@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 58b98838d22f79b41be52006b21ff07e, type: 2}
+  - {fileID: 2100000, guid: 7add3fe264fcef34193012d752fe7c57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -140,7 +140,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 58b98838d22f79b41be52006b21ff07e, type: 2}
+  - {fileID: 2100000, guid: 7add3fe264fcef34193012d752fe7c57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -221,7 +221,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 58b98838d22f79b41be52006b21ff07e, type: 2}
+  - {fileID: 2100000, guid: 7add3fe264fcef34193012d752fe7c57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -302,7 +302,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 58b98838d22f79b41be52006b21ff07e, type: 2}
+  - {fileID: 2100000, guid: 7add3fe264fcef34193012d752fe7c57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -383,7 +383,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 58b98838d22f79b41be52006b21ff07e, type: 2}
+  - {fileID: 2100000, guid: 7add3fe264fcef34193012d752fe7c57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -415,7 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9008409244794485443}
   m_Layer: 0
-  m_Name: Cloud
+  m_Name: Coral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
