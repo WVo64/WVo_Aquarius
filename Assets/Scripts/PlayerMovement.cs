@@ -8,7 +8,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 direction = Vector3.zero;
     private float speed = 25.0f;
     private Quaternion aimLook;
+    
     private Animator anim;
+
+    public GameObject playerShot;
+    public float fireForce;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
         rbPlayer = GetComponent<Rigidbody>();
         rbPlayer.drag = 3;
         anim = GetComponentInChildren<Animator>();
+
     }
 
     // Update is called once per frame
@@ -28,8 +33,10 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetMouseButton(0))
         {
-            Debug.Log("Pressed left click");
+            //Debug.Log("Pressed left click");
             //GameObject SHOT MADE HERE
+            GameObject shotInstance = Instantiate(playerShot, transform.position, Quaternion.identity);
+            shotInstance.GetComponent<Rigidbody>().AddForce(transform.up * fireForce);
             anim.SetBool("isShooting", true);
             
         }
